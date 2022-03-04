@@ -29,10 +29,23 @@ function BotsPage() {
         }
     }
 
+    function handleBotDelete(bot){
+      if(botArmy.find(item => item.id === bot.id)) {
+        const botList = bots.filter(item => item !== bot)
+        const armyList = botArmy.filter ( item => item !== botArmy)
+        setBotArmy(armyList)
+        setBots(botList)
+        fetch("http://localhost:6001/bots/"+bot.id, {
+        method: "DELETE" })
+    } else {
+        console.log("not even there")
+    }
+    }
+
   return (
     <div>
-      <YourBotArmy botArmy= {botArmy} onRemoveFromBotArmy={handleRemoveFromBotArmy}/>
-      <BotCollection bots = {bots} onAddToBotArmy={handleAddToBotArmy}/>
+      <YourBotArmy botArmy= {botArmy} onRemoveFromBotArmy={handleRemoveFromBotArmy} onBotDelete= {handleBotDelete}/>
+      <BotCollection bots = {bots} onAddToBotArmy={handleAddToBotArmy} onBotDelete= {handleBotDelete}/>
     </div>
   )
 }

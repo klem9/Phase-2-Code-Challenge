@@ -3,7 +3,7 @@ import BotCard from "./BotCard";
 
 function YourBotArmy({botArmy,onRemoveFromBotArmy, onBotDelete}) {
   const botCards = botArmy.map(bot => {
-    return <BotCard key={bot.id} bot={bot} onBotClicked = {onRemoveFromBotArmy} />
+    return <BotCard key={bot.id} bot={bot} onBotClicked = {onRemoveFromBotArmy} onBotDelete = {onBotDelete} />
   });
 
   return (
