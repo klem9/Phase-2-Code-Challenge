@@ -7,7 +7,7 @@ function BotsPage() {
   const [botArmy, setBotArmy] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:6001/bots")
+    fetch("http://localhost:8002/bots")
     .then(resp => resp.json())
     .then(botData => {
         setBots(botData);
@@ -35,10 +35,10 @@ function BotsPage() {
         const armyList = botArmy.filter ( item => item !== botArmy)
         setBotArmy(armyList)
         setBots(botList)
-        fetch("http://localhost:6001/bots/"+bot.id, {
+        fetch("http://localhost:8002/bots/"+bot.id, {
         method: "DELETE" })
     } else {
-        console.log("not even there")
+        console.log("No bot found")
     }
     }
 
