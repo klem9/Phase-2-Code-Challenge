@@ -19,9 +19,19 @@ function BotsPage() {
       if (myBotArmy.length <= 0)
         setBotArmy([...botArmy, bot])
     }
+
+    function handleRemoveFromBotArmy(bot){
+      const botArmyIndex = botArmy.filter(item => bot.id === item.id)
+      if (botArmyIndex.length >= 0) {
+          const newBotArray = [...botArmy]
+          newBotArray.splice(botArmyIndex,1)
+          setBotArmy(newBotArray)
+        }
+    }
+
   return (
     <div>
-      <YourBotArmy botArmy= {botArmy}/>
+      <YourBotArmy botArmy= {botArmy} onRemoveFromBotArmy={handleRemoveFromBotArmy}/>
       <BotCollection bots = {bots} onAddToBotArmy={handleAddToBotArmy}/>
     </div>
   )
